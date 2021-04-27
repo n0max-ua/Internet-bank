@@ -4,7 +4,7 @@ import com.ua.IBank.model.Role;
 import com.ua.IBank.model.User;
 import com.ua.IBank.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,11 +14,11 @@ public class UserService {
     private UserRepo userRepo;
 
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     public void save(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setPassword(bCryptPasswordEncoder.encode(user.getConfirmPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getConfirmPassword()));
         user.setRole(Role.ROLE_USER);
         userRepo.save(user);
     }
