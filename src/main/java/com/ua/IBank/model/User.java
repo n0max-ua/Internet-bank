@@ -18,6 +18,7 @@ public class User {
 
     @Transient
     private String confirmPassword;
+
     private Role role;
 
     @OneToOne(cascade = CascadeType.ALL)
